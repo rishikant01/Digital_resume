@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rishi Kant Shukla - Python Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --bg-color: #f1f5f9;
+            --text-color: #1e293b;
+            --card-bg: white;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --section-border: #e2e8f0;
+            --tech-tag-bg: #e0f2fe;
+            --tech-tag-color: #0369a1;
+        }
+
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --dark: #f8fafc;
+            --light: #1e293b;
+            --gray: #94a3b8;
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --card-bg: #1e293b;
+            --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            --section-border: #334155;
+            --tech-tag-bg: #1e3a8a;
+            --tech-tag-color: #bfdbfe;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInDown 1s ease;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .subtitle::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: white;
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: subtitleUnderline 3s ease-in-out infinite;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.5s ease;
+        }
+        
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(360deg) scale(1.2);
+        }
+        
+        section {
+            padding: 3rem 0;
+            background: var(--card-bg);
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            margin-left: 0.75rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+        
+        .education-item, .project-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--section-border);
+            animation: fadeIn 0.5s ease forwards;
+            margin-left: 0.75rem;
+            margin-right: 0.75rem;
+            opacity: 0;
+        }
+        
+        .education-item:last-child, .project-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .education-header, .project-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .education-title, .project-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-left: 0.75rem;
+            margin-right: 0.75rem;
+            color: var(--text-color);
+        }
+        
+        .education-date, .project-tech {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .education-details, .project-description {
+            margin-bottom: 0.5rem;
+            margin-left: 0.75rem;
+        }
+        
+        .education-cgpa {
+            font-weight: 500;
+            color: var(--secondary);
+            margin-left: 0.75rem;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 1rem;
+        }
+        
+        .skill-category {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-item {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .skill-item::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        .project-tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tech-tag {
+            background: var(--tech-tag-bg);
+            color: var(--tech-tag-color);
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .project-link:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .project-link.demo {
+            background: var(--secondary);
+        }
+        
+        .project-link.demo:hover {
+            background: #0d9f6e;
+        }
+        
+        .leadership-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .leadership-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Education section margins */
+        #education .container {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        
+        /* Dark/Light mode toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: var(--card-bg);
+            border: 1px solid var(--section-border);
+            border-radius: 50px;
+            padding: 5px;
+            display: flex;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .theme-toggle i {
+            font-size: 1.2rem;
+            padding: 5px;
+            color: var(--text-color);
+        }
+        
+        /* Header animations */
+        .animated-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite linear;
+            z-index: 0;
+        }
+        
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            top: -50px;
+            left: -50px;
+            animation-delay: 0s;
+        }
+        
+        .circle-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 2s;
+        }
+        
+        .circle-3 {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            right: 20%;
+            animation-delay: 4s;
+        }
+        
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        
+        .mouse {
+            width: 25px;
+            height: 40px;
+            border: 2px solid white;
+            border-radius: 15px;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .wheel {
+            width: 4px;
+            height: 8px;
+            background: white;
+            border-radius: 2px;
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollWheel 2s infinite;
+        }
+        
+        .arrow-down {
+            width: 15px;
+            height: 15px;
+            border-right: 2px solid white;
+            border-bottom: 2px solid white;
+            transform: rotate(45deg);
+            margin: 5px auto 0;
+            animation: arrowPulse 2s infinite;
+        }
+        
+        /* Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, 20px) rotate(90deg); }
+            50% { transform: translate(0, 40px) rotate(180deg); }
+            75% { transform: translate(-20px, 20px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+        @keyframes textGlow {
+            from { text-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+            to { text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4); }
+        }
+        
+        @keyframes subtitleUnderline {
+            0%, 100% { transform: scaleX(0); }
+            50% { transform: scaleX(1); }
+        }
+        
+        @keyframes scrollWheel {
+            0% { top: 5px; opacity: 1; }
+            50% { top: 15px; opacity: 0.5; }
+            100% { top: 5px; opacity: 1; }
+        }
+        
+        @keyframes arrowPulse {
+            0%, 100% { opacity: 0.5; transform: rotate(45deg) translateY(0); }
+            50% { opacity: 1; transform: rotate(45deg) translateY(5px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .education-item:nth-child(1) { animation-delay: 0.1s; }
+        .education-item:nth-child(2) { animation-delay: 0.2s; }
+        .education-item:nth-child(3) { animation-delay: 0.3s; }
+        
+        .project-item:nth-child(1) { animation-delay: 0.1s; }
+        .project-item:nth-child(2) { animation-delay: 0.2s; }
+        .project-item:nth-child(3) { animation-delay: 0.3s; }
+        .project-item:nth-child(4) { animation-delay: 0.4s; }
+        .project-item:nth-child(5) { animation-delay: 0.5s; }
+        .project-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            
+            .education-header, .project-header {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+            
+            #education .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dark/Light mode toggle button -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </div>
+    
+    <header>
+        <div class="container header-content">
+            <!-- Animated circles -->
+            <div class="animated-circle circle-1"></div>
+            <div class="animated-circle circle-2"></div>
+            <div class="animated-circle circle-3"></div>
+            
+            <h1>RISHI KANT SHUKLA</h1>
+            <div class="subtitle">PYTHON DEVELOPER</div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+91 6268828940</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>rishikant9009@gmail.com</span>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/rishikant01" class="social-link" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="http://www.linkedin.com/in/rishi-kant-shukla-046208242" class="social-link" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            
+            
+    </header>
+    
+    <main class="container">
+        <section id="education">
+            <h2>EDUCATION</h2>
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="education-title">Baderia Institute of Engineering And Management [RGPV]</div>
+                    <div class="education-date">May 2025</div>
+                </div>
+                <div class="education-details">B.Tech Electronics and Communication</div>
+                <div class="education-cgpa">Current CGPA: 8.24</div>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="education-title">Central Academy Sr. Sec. School</div>
+                    <div class="education-date">2021</div>
+                </div>
+                <div class="education-details">Class 12th</div>
+                <div class="education-cgpa">Percentage: 92.4%</div>
+            </div>
+            
+            <div class="education-item">
+                <div class="education-header">
+                    <div class="education-title">Central Academy Sr. Sec. School</div>
+                    <div class="education-date">2019</div>
+                </div>
+                <div class="education-details">Class 10th</div>
+                <div class="education-cgpa">Percentage: 93.2%</div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2>SKILLS & INTERESTS</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">Python</li>
+                        <li class="skill-item">HTML/CSS</li>
+                        <li class="skill-item">JavaScript</li>
+                        <li class="skill-item">MySQL</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Interests</h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">Fitness</li>
+                        <li class="skill-item">Music</li>
+                        <li class="skill-item">Teaching</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>PROJECTS</h2>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">VYOM – Personal AI Assistant</div>
+                    <div class="project-tech">Virtual Yield Optimization Machine</div>
+                </div>
+                <div class="project-tech-list">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">NLP</span>
+                    <span class="tech-tag">Speech Recognition</span>
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">Tensorflow</span>
+                </div>
+                <div class="project-description">
+                    Developed a personal AI assistant named VYOM, capable of performing various tasks such as speech recognition, answering queries, and providing personalized assistance. It has Face Recognition and Live Object Detection capabilities.
+                </div>
+                <div class="project-links">
+                    <a href="https://www.linkedin.com/posts/rishi-kant-shukla-046208242_personalbot-machinelearning-neuralnetworks-activity-7157073132300713984-F2po?utm_source=share&utm_medium=member_desktop&rcm=ACoAADwv7jYBG1dR2lToGL5kO68Gex7awAAzGWE" class="project-link demo pulse">
+                        <i class="fas fa-eye"></i> View Demo (VYOM)
+                    </a>
+                    <a href="https://www.linkedin.com/posts/rishi-kant-shukla-046208242_ai-objectdetection-yolo-activity-7254046296284483584-cePB?utm_source=share&utm_medium=member_desktop&rcm=ACoAADwv7jYBG1dR2lToGL5kO68Gex7awAAzGWE" class="project-link demo pulse">
+                        <i class="fas fa-eye"></i> View Demo (VYOM'S OBJECT DETECTION)
+                    </a>
+                    <a href="https://github.com/rishikant01/VYOM" class="project-link">
+                        <i class="fab fa-github"></i> Source Code
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">VIRTUAL KEYBOARD</div>
+                </div>
+                <div class="project-tech-list">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">MediaPipe</span>
+                    <span class="tech-tag">PyAutoGUI</span>
+                    <span class="tech-tag">Machine Learning</span>
+                </div>
+                <div class="project-description">
+                    Developed a Virtual Keyboard using hand-tracking technology, enabling users to type without a physical keyboard. Utilized OpenCV and MediaPipe for real-time hand gesture detection and PyAutoGUI for simulating keystrokes.
+                </div>
+                <div class="project-links">
+                    <a href="https://www.linkedin.com/posts/rishi-kant-shukla-046208242_virtualkeyboard-techinnovation-ai-activity-7308555948271263744-fr6H?utm_source=share&utm_medium=member_desktop&rcm=ACoAADwv7jYBG1dR2lToGL5kO68Gex7awAAzGWE" class="project-link demo pulse">
+                        <i class="fas fa-eye"></i> View Demo
+                    </a>
+                    <a href="https://github.com/rishikant01/VYOM/blob/main/virtual_keyboard.py" class="project-link">
+                        <i class="fab fa-github"></i> Source Code
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">COMMAND PROMPT PORTFOLIO WEBSITE</div>
+                </div>
+                <div class="project-tech-list">
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Python</span>
+                </div>
+                <div class="project-description">
+                    Created a unique portfolio website mimicking a command prompt interface, where the entire typing space covers the full area for an authentic experience. Implemented a custom voice bot named "VYOM" that activates with an introduction, listens and responds to user queries.
+                </div>
+                <div class="project-links">
+                    <a href="https://rishi-prompt-portfolio.netlify.app/" class="project-link demo pulse" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Live Demo 1.0
+                    </a>
+                    <a href="https://rishikant01.github.io/CMD-2.0/" class="project-link demo pulse" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Live Demo 2.0
+                    </a>
+                    <a href="https://github.com/rishikant01/Commandprompt_portfolio" class="project-link">
+                        <i class="fab fa-github"></i> Source Code
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">MOTION-CONTROLLED TEMPLE RUN SIMULATOR</div>
+                </div>
+                <div class="project-tech-list">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">PyGame</span>
+                    <span class="tech-tag">MediaPipe</span>
+                    <span class="tech-tag">OpenCV</span>
+                </div>
+                <div class="project-description">
+                    Developed a hands-free Temple Run simulator using full-body motion tracking via MediaPipe. Implemented real-time pose detection to control character movement (lean left/right, jump, slide) and gesture-based UI for start/pause using OpenCV.
+                </div>
+                <div class="project-links">
+                    <a href="https://www.linkedin.com/posts/rishi-kant-shukla-046208242_computervision-python-gamingtech-activity-7315061344490151938-1HaU?utm_source=share&utm_medium=member_desktop&rcm=ACoAADwv7jYBG1dR2lToGL5kO68Gex7awAAzGWE" class="project-link demo pulse">
+                        <i class="fas fa-eye"></i> View Demo
+                    </a>
+                    <a href="https://github.com/rishikant01/Temple_Run_Simulator" class="project-link">
+                        <i class="fab fa-github"></i> Source Code
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <div class="project-header">
+                    <div class="project-title">TRISHUL SECURITY SYSTEM</div>
+                </div>
+                <div class="project-tech-list">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">IoT</span>
+                    <span class="tech-tag">AI</span>
+                    <span class="tech-tag">Biometrics</span>
+                </div>
+                <div class="project-description">
+                    Developed a high-security system using biometric authentication (fingerprint, facial recognition), encryption, AI-based anomaly detection, and real-time monitoring (IoT sensors). Reduced breaches by 80% and improved response time by 60%.
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link demo pulse">
+                        <i class="fas fa-eye"></i> View Demo
+                    </a>
+                    <a href="#" class="project-link">
+                        <i class="fab fa-github"></i> Source Code
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="leadership">
+            <h2>LEADERSHIP</h2>
+            <div class="leadership-item">
+                <div class="leadership-title">Team RUBIX, Smart India Hackathon 2023 - Leader</div>
+                <div class="project-description">
+                    Led a team to develop a robot mascot concept, achieving a top 10 ranking in the internal hackathon. Gained valuable experience in leadership, strategic planning, and team collaboration under pressure.
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Rishi Kant Shukla. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Dark/Light mode toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme');
+        
+        // Set initial theme
+        if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+            document.body.setAttribute('data-theme', 'dark');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            document.body.setAttribute('data-theme', 'light');
+            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+        
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                document.body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+        
+        // Simple animation trigger on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.education-item, .project-item');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    
+                    if(elementPosition < screenPosition) {
+                        element.style.animationPlayState = 'running';
+                    }
+                });
+            };
+            
+            // Run once on load
+            animateOnScroll();
+            
+            // Run on scroll
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
